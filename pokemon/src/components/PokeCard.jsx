@@ -5,10 +5,21 @@ import  TypeCard  from "./TypeCard";
 export default function PokeCard(props) {
     const { selectedPokemon } = props;
     const [ data, setData ] = useState(null);
-    const [ loading, setLoading ] = useState(null);
+    const [ loading, setLoading ] = useState(false);
 
 
     const { name, height, abilities , stats, types, moves, sprites } = data  || {}
+
+    const imgList = Object.keys(sprites || {}).filter(val => {
+        if (!sprites[val]){
+            return false 
+        }
+
+        if (['versions', 'other'].includes(val)){
+            return false 
+        }
+        return true 
+    })
     useEffect(() => {
         // callback function 
         // if loading, exit logic localstorage to check the cached data 
@@ -64,7 +75,7 @@ export default function PokeCard(props) {
             </div> 
         )
     }
-    
+
     return (
         <div className="poke-card">
             <div>
@@ -78,7 +89,12 @@ export default function PokeCard(props) {
                     )
                 })} */}
             </div>
-
+             <div>
+                <img className='default-img 'src={'/pokemon/' + getFullPokedexNumber(selectedPokemon) + '.png'} alt={`${name}-large-img`} />
+                <div>
+                    {}
+                </div>
+            </div>   
         </div>
     )
 }
