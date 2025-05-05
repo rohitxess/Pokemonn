@@ -19,7 +19,7 @@ export default function PokeCard(props) {
             // 1. define the cache 
         let cache = {}
         if (localStorage.getItem('pokedex')){
-            cache = JSON.parse(localStorage.getItem('pokemon'))
+            cache = JSON.parse(localStorage.getItem('pokedex'))
         }
             // 2. check if the selected pokemon is in the cache , otherwise  fetch 
 
@@ -60,12 +60,11 @@ export default function PokeCard(props) {
     if (loading) {
         return (
             <div>
-                <h4>
-                    loading....
-                </h4>
+                <h4> loading....</h4>
             </div> 
         )
     }
+    
     return (
         <div className="poke-card">
             <div>
@@ -73,9 +72,11 @@ export default function PokeCard(props) {
                 <h2>{name}</h2>
             </div>
             <div className="type-container">
-                {types.map((typeObj, typeIndex) => {
+                {/* {types.map((typeObj, typeIndex) => {
+                    return (
                     <TypeCard key={typeIndex} type={typeObj?.type?.name} />
-                })}
+                    )
+                })} */}
             </div>
 
         </div>
