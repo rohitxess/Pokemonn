@@ -183,6 +183,12 @@ p {
     width: fit-content;
 }
 
+span {
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
 /* Content Sectioning */
 
 main {}
@@ -471,6 +477,21 @@ select {
 input:disabled {
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+input[type="number"].buttonless {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+input[type="number"].buttonless::-webkit-inner-spin-button {
+    display: none;
+    appearance: none;
+}
+
+input[type="number"].buttonless::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="checkbox"],
