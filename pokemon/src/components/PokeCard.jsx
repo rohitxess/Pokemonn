@@ -37,10 +37,10 @@ export default function PokeCard(props) {
         if (selectedPokemon in cache ){
             //read from cache 
             setData(cache[selectedPokemon])
+            console.log('Found pokemon in cache')
             return 
-        } else {
+        } 
 
-        }
         // we passed all the cache stuff to no avail and now need to fetch the data from the API 
         async function fetchPokemonData() {
             setLoading(true)
@@ -51,10 +51,10 @@ export default function PokeCard(props) {
                 const res = await fetch(finalUrl)
                 const pokemonData = await res.json()
                 setData(pokemonData)
-                console.log(pokemonData)
+                console.log('fetched pokemon data')
 
                 cache[selectedPokemon] = pokemonData;
-                localStorage.setItem(JSON.stringify(cache))
+                localStorage.setItem('pokedex',JSON.stringify(cache))
                 
             } catch(err){
                 console.log(err.message)
@@ -68,7 +68,7 @@ export default function PokeCard(props) {
             // 3. if we fetch from the api, make sure to save the information to cache for the next time 
     },[selectedPokemon])
 
-    if (loading) {
+    if (loading || !data) {
         return (
             <div>
                 <h4> loading....</h4>
@@ -83,11 +83,11 @@ export default function PokeCard(props) {
                 <h2>{name}</h2>
             </div>
             <div className="type-container">
-                {/* {types.map((typeObj, typeIndex) => {
+                {types.map((typeObj, typeIndex) => {
                     return (
                     <TypeCard key={typeIndex} type={typeObj?.type?.name} />
                     )
-                })} */}
+                })}
             </div>
              <div>
                 <img className='default-img 'src={'/pokemon/' + getFullPokedexNumber(selectedPokemon) + '.png'} alt={`${name}-large-img`} />
