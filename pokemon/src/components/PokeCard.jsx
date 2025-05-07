@@ -67,6 +67,8 @@ export default function PokeCard(props) {
             setLoadingSkill(false)
         }
     }
+
+    
     useEffect(() => {
         // callback function 
         // if loading, exit logic localstorage to check the cached data 
@@ -136,14 +138,16 @@ export default function PokeCard(props) {
     return (
         <div className="poke-card">
             {skill && (
-            <Modal handleCloseModal={() => {}}> 
+            <Modal handleCloseModal={() => {
+                setSkill(null)
+            }}> 
                 <div>
                     <h6>Name</h6>
-                    <h2></h2>
+                    <h2 className="skill-name">{skill.name.replaceAll('-', ' ')}</h2>
                 </div>
                 <div>
                     <h6>Description</h6>
-                    <h2>Something</h2>
+                    <h2>{skill.description}</h2>
                 </div>
             </Modal>)}
 
