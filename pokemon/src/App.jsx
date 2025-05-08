@@ -6,10 +6,13 @@ import TypeCard from './components/TypeCard'
 
 function App() {
   const [ selectedPokemon, setSelectedPokemon ] = useState(0);
-  const [ showSideMenu, setShowSideMenu ] = usestate(false);
-
+  const [ showSideMenu, setShowSideMenu ] = useState(true); // this does the opposite of what it should do
   function handleToggleMenu() {
     setShowSideMenu(!showSideMenu)
+  }
+
+  function handleCloseMenu() {
+    setShowSideMenu(true)
   }
 
   return (
@@ -18,7 +21,8 @@ function App() {
      <SideNav 
      showSideMenu={showSideMenu}
      selectedPokemon={selectedPokemon} 
-     setSelectedPokemon={setSelectedPokemon} />
+     setSelectedPokemon={setSelectedPokemon}
+     handleCloseMenu={handleCloseMenu} />
      {/* <TypeCard /> */}
      <PokeCard selectedPokemon={selectedPokemon}/>
     </>

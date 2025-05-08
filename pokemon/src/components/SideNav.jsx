@@ -2,7 +2,7 @@ import { useState } from "react";
 import { first151Pokemon, getFullPokedexNumber } from "../utils"
 
 export default function SideNav(props) {
-    const { selectedPokemon, setSelectedPokemon, handleToggleMenu, showSideModal } = props;
+    const { selectedPokemon, setSelectedPokemon, handleCloseMenu, showSideMenu } = props;
     const [ searchValue, setSearchValue ] = useState('');
 
     const filteredPokemon = first151Pokemon.filter((ele, eleIndex)=> {
@@ -20,10 +20,12 @@ export default function SideNav(props) {
         return false 
     })
     return (
-        <nav className={'' + (!show)}>
-            <div className={"header"}>
-                <button className="open-nav-button">
-                    <i classname="fa-solid fa-arrow-left-long"></i>
+        // adding dynamic classes to nav 
+        // Open is a class 
+        <nav className={'' + (!showSideMenu ? "open" : '')}> 
+            <div className={"header" + (!showSideMenu ? "open" : '')} >
+                <button onClick={handleCloseMenu} className="open-nav-button">
+                    <i className="fa-solid fa-arrow-left-long"></i>
                 </button>
                 <h1 className="text-gradient">Pokedex</h1>
             </div>
